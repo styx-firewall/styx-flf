@@ -49,6 +49,7 @@ If you're using Proxmox, here's what to keep in mind when creating the VM:
 - **RAM**: **4 GB** (fixed don't use ballooning)
 - **Disk**: **10 GB** is the minimum, less will work but will not add the right partitions (fallback to default/basic partitions system)
 - **Network**: since it is a router/firewall you'll probably need at least **two network cards**
+  - If you're not using pass-through on the network interface, it would probably be advisable to configure multiqueue in virtio.
 
 ## Partitions
 
