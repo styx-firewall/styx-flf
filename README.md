@@ -2,6 +2,8 @@
 
 ## Installation
 
+Download the ISO, burn it to a USB drive, or copy it to your favorite hypervisor. Then boot from it like any other Linux distribution (it's based on Debian).
+
 If a DHCP network was used during installation, that IP will be set as static on next boot.
 
 In installations without DHCP, if an IP and gateway were provided, they will be kept.
@@ -43,15 +45,17 @@ curl -X POST https://x.x.x.x:3041/submit.php \
 If you're using Proxmox, here's what to keep in mind when creating the VM:
 
 - **Machine type**: pick **Q35**
-- **BIOS**: use **OVMF (UEFI)** — you'll need to add a small EFI disk
-  - ⚠️ **Important**: disable `pre-enrolled-keys` when adding the EFI disk, otherwise Secure Boot will block the custom kernel (`pre-enrolled-keys=0`)
+- **BIOS**: use **OVMF (UEFI)** , probably you want add a small EFI disk
+  - ⚠️ **Important**: disable `pre-enrolled-keys` if you add an EFI disk, otherwise Secure Boot will block the custom kernel (`pre-enrolled-keys=0`)
 - **CPU**: **2-4 cores** at least; select `host` type for best performance
 - **RAM**: **4 GB**  at least (fixed ballooning is not recommended)
 - **Disk**: **10 GB** is the minimum, less will work but will not add the right partitions (fallback to default/basic partitions system)
+ - ⚠️ **Important**: The network logging system can easily consume all available space if it's very limited. The default log rotation is daily, and the last 12 days are retained. Adjust /var/log to suit your needs.
 - **Network**: since it is a router/firewall you'll probably need at least **two network cards**
   - For best performance passthrought the network interfaces
-  - If you're not using passthrough on the network interface, it would probably be advisable to configure multiqueue in virtio.
+  - If you're not using passthrough on the network interface, depending on your needs it would probably be advisable to configure multiqueue in virtio.
 
 ## Partitions
 
 By default, several LVM partitions are created, taking approximately 8 GB in LVM, with the rest allocated to other non-LVM system partitions. Any remaining available space is left unallocated for the administrator to assign as they see fit.
+Probably /var/log is the best candidate to add more space.
