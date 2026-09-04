@@ -50,7 +50,7 @@ If you're using Proxmox, here's what to keep in mind when creating the VM:
 - **CPU**: **2-4 cores** at least; select `host` type for best performance
 - **RAM**: **4 GB**  at least (fixed ballooning is not recommended)
 - **Disk**: **10 GB** is the minimum, less will work but will not add the right partitions (fallback to default/basic partitions system)
- - ⚠️ **Important**: The network logging system can easily consume all available space if it's very limited. The default log rotation is daily, and the last 12 days are retained. Adjust /var/log to suit your needs.
+ - ⚠️ **Important**: The network logging system can easily consume all available space if it's very limited. The default log rotation is daily, and the last 12 days are retained. A simple testing machine will generate 500mb of logs daily. Adjust /var/log to suit your needs.
 - **Network**: since it is a router/firewall you'll probably need at least **two network cards**
   - For best performance passthrought the network interfaces
   - If you're not using passthrough on the network interface, depending on your needs it would probably be advisable to configure multiqueue in virtio.
