@@ -37,8 +37,13 @@ curl -X POST https://x.x.x.x:3041/submit.php \
 
 ## Getting Started
 
-    Open a browser at https://ip.ip.ip.ip:3041 and log in with user 'admin' and the password
-    according to the installation method. Note: The 'root' user does not have access to the UI.
+Open a browser at https://ip.ip.ip.ip:3041 and log in with user 'admin' and the password
+ccording to the installation method. Note: The 'root' user does not have access to the UI.
+
+## First Steps Notes
+
+* Most features are disabled by default, Sidebar->Styx->Features will show the available ones.
+* The ISO installs Styx using the test branch. This prevents the installation of any barely tested development packages that could easily break the installation and compromise basic functionality. However, given the overall state of the 'tech review', it might be advisable to switch to the 'dev' branch with the latest fixes to test the latest version.
 
 ## Proxmox VM — How to set it up
 
